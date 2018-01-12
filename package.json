@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "RFC5869: HMAC-based Extract-and-Expand Key Derivation Function (HKDF)",
   "main": "hkdf.js",
+  "files" : [
+    "hkdf.js",
+    "futoin.json"
+  ],
   "engines": {
     "node": ">=6"
   },
