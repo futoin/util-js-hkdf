@@ -58,25 +58,35 @@ $ yarn add futoin-hkdf --save
 ```javascript
 const hkdf = require('futoin-hkdf');
 
-const ikm = 'string-or-buffer'; // initial keying material
-const length = 16; // required output length in bytes
-const salt = 'strongly-encouraged'; // can be empty string or false equal
-const info = 'optional-context'; // optional parameter
-const hash = 'SHA-256'; // HMAC hashing algorithm to use
+// Parameter overview
+//-------------------
+// initial keying material
+const ikm = 'string-or-buffer';
+// required output length in bytes
+const length = 16;
+// can be empty string or false equivalent
+const salt = 'strongly-encouraged';
+// optional parameter
+const info = 'optional-context';
+// HMAC hashing algorithm to use
+const hash = 'SHA-256';
 
-// Generic
+// Generic derivation
+//-------------------
 hkdf(ikm, length, {salt, info, hash}); // Buffer(length) - derived key
 hkdf(ikm, length, {salt, info, hash}).toString('hex'); // String(2*length)
 
 // NOTE: all optional paramaters are passed in object
 
 // With some parameters omitted
+//-------------------
 hkdf(ikm, length, {salt});
 hkdf(ikm, length, {info});
 hkdf(ikm, length, {hash});
 hkdf(ikm, length);
 
 // Advanced usage (only if you know what you are doing)
+//-------------------
 hkdf.hash_length(hash); // get hash_len
 hkdf.extract(hash, hash_len, ikm, salt); // run only step #1
 hkdf.expand(hash, hash_len. prk, length, info); // run only step #2
