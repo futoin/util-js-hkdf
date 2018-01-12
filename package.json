@@ -1,0 +1,42 @@
+{
+  "name": "futoin-hkdf",
+  "version": "0.0.1",
+  "description": "RFC5869: HMAC-based Extract-and-Expand Key Derivation Function (HKDF)",
+  "main": "hkdf.js",
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/futoin/util-js-hkdf.git"
+  },
+  "keywords": [
+    "futoin",
+    "crypto",
+    "hkdf",
+    "kdf"
+  ],
+  "author": {
+    "name": "Andrey Galkin",
+    "email": "andrey@futoin.org"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/futoin/util-js-hkdf/issues",
+    "email": "support@futoin.org"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.12.1",
+    "grunt": "^1.0.1",
+    "grunt-eslint": "^20.1.0",
+    "grunt-jsdoc-to-markdown": "^3.0.0",
+    "grunt-mocha-istanbul": "^5.0.2",
+    "grunt-text-replace": "^0.4.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^4.0.1"
+  }
+}

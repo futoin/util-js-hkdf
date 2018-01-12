@@ -1,0 +1,72 @@
+
+  [![NPM Version](https://img.shields.io/npm/v/futoin-hkdf.svg?style=flat)](https://www.npmjs.com/package/futoin-hkdf)
+  [![NPM Downloads](https://img.shields.io/npm/dm/futoin-hkdf.svg?style=flat)](https://www.npmjs.com/package/futoin-hkdf)
+  [![Build Status](https://travis-ci.org/futoin/util-js-hkdf.svg)](https://travis-ci.org/futoin/util-js-hkdf)
+  [![stable](https://img.shields.io/badge/stability-stable-green.svg?style=flat)](https://www.npmjs.com/package/futoin-hkdf)
+
+  [![NPM](https://nodei.co/npm/futoin-hkdf.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/futoin-hkdf/)
+
+Author: [Andrey Galkin](mailto:andrey@futoin.org)
+
+[Web Site](http://futoin.org/)
+
+
+# About
+
+Node.js implementation of [RFC5869: HMAC-based Extract-and-Expand Key Derivation Function (HKDF)](https://tools.ietf.org/html/rfc5869).
+
+The implementation is fully compliant with test vectors provided in the RFC.
+
+There are alternative modules, but they are either much less performing and/or
+have quite poor code quality at the moment and/or not reliable dependency
+for FutoIn Security concept.
+
+Standalone HKDF `extract()` and `expand()` actions are also available for advanced usage.
+
+# Performance comparison
+
+# Installation for Node.js
+
+Command line:
+```sh
+$ npm install futoin-hkdf --save
+```
+or:
+
+```sh
+$ yarn add futoin-hkdf --save
+```
+
+# Examples
+
+```javascript
+const hkdf = require('futoin-hkdf');
+
+const ikm = 'string-or-buffer'; // initial keying material
+const length = 16; // required output length in bytes
+const salt = 'strongly-encouraged'; // can be empty string or false equal
+const info = 'optional-context'; // optional parameter
+const hash = 'SHA-256'; // HMAC hashing algorithm to use
+
+// Generic
+hkdf(ikm, length, {salt, info, hash}); // Buffer(length) - secure derived key
+hkdf(ikm, length, {salt, info, hash}).toString('hex'); // String(2*length)
+
+// NOTE: all optional paramaters are passed in object
+
+// With some parameters omitted
+hkdf(ikm, length, {salt}); // Buffer(length) - secure derived key
+hkdf(ikm, length, {info}); // Buffer(length) - weak derived key
+hkdf(ikm, length, {hash}); // Buffer(length) - weak derived key
+hkdf(ikm, length); // Buffer(length) - weak derived key
+
+// Advanced usage (only if you know what you are doing)
+hkdf.hash_length(hash); // get hash_len
+hkdf.extract(hash, hash_len, ikm, salt); // run only step #1
+hkdf.expand(hash, hash_len. prk, length, info); // run only step #2
+```
+
+# API documentation
+
+{{>main}}
+

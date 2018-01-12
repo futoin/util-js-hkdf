@@ -1,0 +1,20 @@
+{
+  "name": "futoin-hkdf",
+  "version": "0.0.1",
+  "vcs": "git",
+  "rms": "npm",
+  "rmsRepo": "ignored",
+  "plugins": {
+    "release": "futoin.cid.misc.releasetool"
+  },
+  "actions": {
+    "test": [
+      "@cid tool envexec node -- sh -c \"test $NODE_ENV != production\"",
+      "@cid tool exec grunt -- test"
+    ],
+    "upgrade-deps": [
+      "@cid tool update",
+      "@cid tool exec yarn -- upgrade --latest"
+    ]
+  }
+}
