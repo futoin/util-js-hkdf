@@ -29,6 +29,7 @@
     "email": "support@futoin.org"
   },
   "devDependencies": {
+    "benchmark": "^2.1.4",
     "chai": "^4.1.2",
     "eslint": "^4.12.1",
     "grunt": "^1.0.1",

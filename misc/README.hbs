@@ -17,13 +17,29 @@ Node.js implementation of [RFC5869: HMAC-based Extract-and-Expand Key Derivation
 
 The implementation is fully compliant with test vectors provided in the RFC.
 
-There are alternative modules, but they are either much less performing and/or
-have quite poor code quality at the moment and/or not reliable dependency
-for FutoIn Security concept.
+There are alternative modules, but they are:
+* much less performing and/or
+* have quite poor code quality at the moment and/or
+* are not compliant with RFC (e.g. work only with string parameters) and/or
+* not working with current Node.js versions and/or
+* do not support arbitrary hash functions and/or
+* not reliable dependency for FutoIn Security concept in general.
 
 Standalone HKDF `extract()` and `expand()` actions are also available for advanced usage.
 
 # Performance comparison
+
+The figures in "derived keys per second".
+
+* **futoin-hkdf** - **74 642**
+    - fully compliant
+* `node-hdkf`/`hdkf` modules - *57 707* (~22% slower)
+    - seems to be broken by design
+    - **produces wrong results with RFC test vectors**
+* `ctrlpanel-hdkf` - *52 181* (~30% slower)
+    - seems to be compliant
+* `@stablelib/hkdf` - *39 808* (~46% slower)
+    - seems to be compliant
 
 # Installation for Node.js
 
@@ -49,16 +65,16 @@ const info = 'optional-context'; // optional parameter
 const hash = 'SHA-256'; // HMAC hashing algorithm to use
 
 // Generic
-hkdf(ikm, length, {salt, info, hash}); // Buffer(length) - secure derived key
+hkdf(ikm, length, {salt, info, hash}); // Buffer(length) - derived key
 hkdf(ikm, length, {salt, info, hash}).toString('hex'); // String(2*length)
 
 // NOTE: all optional paramaters are passed in object
 
 // With some parameters omitted
-hkdf(ikm, length, {salt}); // Buffer(length) - secure derived key
-hkdf(ikm, length, {info}); // Buffer(length) - weak derived key
-hkdf(ikm, length, {hash}); // Buffer(length) - weak derived key
-hkdf(ikm, length); // Buffer(length) - weak derived key
+hkdf(ikm, length, {salt});
+hkdf(ikm, length, {info});
+hkdf(ikm, length, {hash});
+hkdf(ikm, length);
 
 // Advanced usage (only if you know what you are doing)
 hkdf.hash_length(hash); // get hash_len
