@@ -88,7 +88,7 @@ const hkdf_expand = ( hash, hash_len, prk, length, info ) => {
 
     const steps = Math.ceil( length / hash_len );
 
-    if ( steps >= 0xFF ) {
+    if ( steps > 0xFF ) {
         throw new Error( `OKM length ${length} is too long for ${hash} hash` );
     }
 

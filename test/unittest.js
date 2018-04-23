@@ -34,10 +34,17 @@ describe( 'HKDF', function() {
         expect( hkdf( 'abc', 12, { hash:'MD5' } ).toString( 'hex' ) ).to.equal( '108ab4ed0e6336264c1f7182' );
     } );
 
+    // as per https://tools.ietf.org/html/rfc6234
+    //    *      okm_len: [in]
+    //    *          The length of the buffer to hold okm.
+    //    *          okm_len must be <= 255 * USHABlockSize(whichSha)
+    // --------------------
+    // 255 * 32 = 8160    so 8160 is a valid case for sha256 (and 8161 should be rejected)
+
     it ( 'should detect too long OKM issue', function() {
         expect( () => {
-            hkdf( 'abc', 8160 );
-        } ).to.throw( 'OKM length 8160 is too long for sha256 hash' );
+            hkdf( 'abc', 8161 );
+        } ).to.throw( 'OKM length 8161 is too long for sha256 hash' );
     } );
 
     it ( 'should fallback hash length for unknown algorithms', function() {
