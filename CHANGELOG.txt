@@ -1,5 +1,5 @@
 
-=== (next) ===
+=== 1.0.1 (2018-04-23) ===
 FIXED: to allow maximum length of 255 steps for ORM
     - Thanks to https://github.com/davidjludwig
       for reporting https://github.com/futoin/util-js-hkdf/issues/1
