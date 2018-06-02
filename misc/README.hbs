@@ -6,10 +6,6 @@
 
   [![NPM](https://nodei.co/npm/futoin-hkdf.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/futoin-hkdf/)
 
-Author: [Andrey Galkin](mailto:andrey@futoin.org)
-
-[Web Site](http://futoin.org/)
-
 
 # About
 
@@ -26,6 +22,10 @@ There are alternative modules, but they are:
 * not reliable dependency for FutoIn Security concept in general.
 
 Standalone HKDF `extract()` and `expand()` actions are also available for advanced usage.
+
+**Documentation** --> [FutoIn Guide](https://futoin.org/docs/miscjs/hkdf/)
+
+Author: [Andrey Galkin](mailto:andrey@futoin.org)
 
 # Performance comparison
 
