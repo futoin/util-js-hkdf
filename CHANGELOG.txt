@@ -1,3 +1,5 @@
+=== (next) ===
+CHANGED: dependency maintenance
 
 === 1.0.1 (2018-04-23) ===
 FIXED: to allow maximum length of 255 steps for ORM
