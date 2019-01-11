@@ -118,7 +118,7 @@ HMAC-based Extract-and-Expand Key Derivation Function (HKDF)
 
 <a name="hkdf.hash_length"></a>
 
-### hkdf.hash_length(hash) ⇒ <code>integer</code>
+### hkdf.hash\_length(hash) ⇒ <code>integer</code>
 Get expected hash length.
 
 **Kind**: static method of [<code>hkdf</code>](#hkdf)  
