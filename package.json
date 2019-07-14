@@ -8,7 +8,7 @@
     "futoin.json"
   ],
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "scripts": {
     "test": "grunt test"
