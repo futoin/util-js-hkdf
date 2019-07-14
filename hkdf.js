@@ -21,6 +21,8 @@
 
 const { createHash, createHmac } = require( 'crypto' );
 
+const g_digestLenCache = {};
+
 /**
  * Get expected hash length.
  *
@@ -37,14 +39,24 @@ const hash_length = ( hash ) => {
     case 'sha512': return 64;
     case 'sha224': return 28;
     case 'sha384': return 48;
-    // Not yet supported by Node.js crypto
-    // case 'blake2s256': return 32;
-    // case 'blake2b512': return 64;
+    case 'sha3-256': return 32;
+    case 'sha3-512': return 64;
+    case 'sha3-224': return 28;
+    case 'sha3-384': return 48;
+    case 'blake2s256': return 32;
+    case 'blake2b512': return 64;
     case 'sha1': return 20;
     case 'md5': return 16;
-    // Not yet supported by Node.js crypto
-    // case 'gost': return 32;
-    default: return createHash( hash ).digest().length;
+    default: {
+        let len = g_digestLenCache[hash];
+
+        if ( len === undefined ) {
+            len = createHash( hash ).digest().length;
+            g_digestLenCache[hash] = len;
+        }
+
+        return len;
+    }
     }
 };
 

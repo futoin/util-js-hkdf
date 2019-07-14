@@ -8,7 +8,6 @@ describe( 'HKDF', function() {
     it ( 'use proper hash lengths', function() {
         const algos = [
             'sha256',
-            'sha256',
             'sha512',
             'sha224',
             'sha384',
@@ -17,6 +16,32 @@ describe( 'HKDF', function() {
             'sha1',
             'md5',
             // 'gost',
+        ];
+
+        for ( let a of algos ) {
+            expect( hkdf.hash_length( a ) ).to.equal( crypto.createHash( a ).digest().length );
+        }
+
+        const future_algos = {
+            'sha3-256' : 32,
+            'sha3-512' : 64,
+            'sha3-224' : 28,
+            'sha3-384' : 48,
+            blake2s256 : 32,
+            blake2b512 : 64,
+        };
+
+        for ( let a in future_algos ) {
+            expect( hkdf.hash_length( a ) ).to.equal( future_algos[a] );
+        }
+    } );
+
+    it ( 'use hash length caching', function() {
+        const algos = [
+            'SHA256',
+            'RIPEMD160',
+            'SHA256',
+            'RIPEMD160',
         ];
 
         for ( let a of algos ) {
