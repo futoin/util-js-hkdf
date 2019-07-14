@@ -1,4 +1,4 @@
-=== (next) ===
+=== 1.1.0 (2019-07-14) ===
 CHANGED: dependency maintenance
 CHANGED: dropped Node v6 support
 NEW: hardcoded SHA3 lengths and length caching for unknown algos
