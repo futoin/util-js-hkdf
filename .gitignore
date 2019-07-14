@@ -4,3 +4,4 @@ out/
 dist/
 *.tgz
 test/foreign
+/.nyc_output

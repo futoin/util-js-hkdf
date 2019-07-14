@@ -35,13 +35,12 @@
   "devDependencies": {
     "benchmark": "^2.1.4",
     "chai": "^4.2.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.0.1",
     "grunt": "^1.0.4",
-    "grunt-eslint": "^21.1.0",
+    "grunt-eslint": "^22.0.0",
     "grunt-jsdoc-to-markdown": "^4.0.0",
-    "grunt-mocha-istanbul": "^5.0.2",
+    "grunt-simple-nyc": "^3.0.0",
     "grunt-text-replace": "^0.4.0",
-    "istanbul": "^0.4.5",
     "mocha": "^6.1.4"
   }
 }
