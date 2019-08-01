@@ -3,15 +3,17 @@
   "version": "1.1.0",
   "description": "RFC5869: HMAC-based Extract-and-Expand Key Derivation Function (HKDF)",
   "main": "hkdf.js",
+  "types": "hkdf.d.ts",
   "files": [
     "hkdf.js",
+    "hkdf.d.ts",
     "futoin.json"
   ],
   "engines": {
     "node": ">=8"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test && tsd"
   },
   "repository": {
     "type": "git",
@@ -41,6 +43,7 @@
     "grunt-jsdoc-to-markdown": "^4.0.0",
     "grunt-simple-nyc": "^3.0.0",
     "grunt-text-replace": "^0.4.0",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "tsd": "^0.7.4"
   }
 }

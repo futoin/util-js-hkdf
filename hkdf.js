@@ -88,7 +88,7 @@ const hkdf_extract = ( hash, hash_len, ikm, salt ) => {
  * @param {string} hash - Hash algorithm
  * @param {integer} hash_len - Hash digest length
  * @param {Buffer|string} prk - A buffer with pseudorandom key
- * @param {Buffer|string} length - length of output keying material in octets
+ * @param {integer} length - length of output keying material in octets
  * @param {Buffer|string} info - Optional context (safe to skip)
  * @returns {Buffer} A buffer with output keying material
  *
