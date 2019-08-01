@@ -159,7 +159,7 @@ HKDF expand action.
 | hash | <code>string</code> | Hash algorithm |
 | hash_len | <code>integer</code> | Hash digest length |
 | prk | <code>Buffer</code> \| <code>string</code> | A buffer with pseudorandom key |
-| length | <code>Buffer</code> \| <code>string</code> | length of output keying material in octets |
+| length | <code>integer</code> | length of output keying material in octets |
 | info | <code>Buffer</code> \| <code>string</code> | Optional context (safe to skip) |
 
 
