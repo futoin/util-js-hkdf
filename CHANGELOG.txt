@@ -1,3 +1,6 @@
+=== (next) ===
+CHANGED: deps maintenance
+
 === 1.2.0 (2019-08-01) ===
 NEW: TypeScript bindings
 
