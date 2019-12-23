@@ -1,16 +1,15 @@
-interface Option {
-  salt?: Buffer | string;
-  info?: Buffer | string;
-  hash?: string;
-}
-
 declare function hkdf(
   ikm: Buffer | string,
   length: number,
-  option?: Option
+  option?: hkdf.Options
 ): Buffer;
 
 declare namespace hkdf {
+  interface Options {
+    salt?: Buffer | string;
+    info?: Buffer | string;
+    hash?: string;
+  }
   export function hash_length(hash: string): number;
   export function extract(
     hash: string,
@@ -27,4 +26,4 @@ declare namespace hkdf {
   ): Buffer;
 }
 
-export default hkdf;
+export = hkdf;

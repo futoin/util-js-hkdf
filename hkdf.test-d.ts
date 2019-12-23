@@ -1,5 +1,5 @@
 import { expectType } from "tsd";
-import hkdf from ".";
+import hkdf = require(".");
 
 const ikm = "string-or-buffer";
 const length = 16;
