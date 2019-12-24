@@ -1,3 +1,6 @@
+=== (next) ===
+CHANGED: fixed TypeScript definitions
+
 === 1.2.1 (2019-09-27) ===
 CHANGED: deps maintenance
 
