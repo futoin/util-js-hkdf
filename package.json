@@ -43,7 +43,7 @@
     "grunt-jsdoc-to-markdown": "^5.0.0",
     "grunt-simple-nyc": "^3.0.1",
     "grunt-text-replace": "^0.4.0",
-    "mocha": "^6.2.2",
+    "mocha": "^7.0.0",
     "tsd": "^0.11.0"
   }
 }
