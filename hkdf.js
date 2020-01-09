@@ -28,7 +28,7 @@ const g_digestLenCache = {};
  *
  * @func
  * @alias hkdf.hash_length
- * @param {string} hash - Hash algorithm
+ * @param {string} hash - Hash algorithm (as in underlying Node.js crypto library)
  * @returns {integer} hash digest byte length
  *
  * @note Values are hardcoded with fallback for unknown algorithms.
@@ -65,7 +65,7 @@ const hash_length = ( hash ) => {
  *
  * @func
  * @alias hkdf.extract
- * @param {string} hash - Hash algorithm
+ * @param {string} hash - Hash algorithm (as in underlying Node.js crypto library)
  * @param {integer} hash_len - Hash digest length
  * @param {Buffer|string} ikm - Initial Keying Material
  * @param {Buffer|string} salt - Optional salt (recommended)
@@ -85,7 +85,7 @@ const hkdf_extract = ( hash, hash_len, ikm, salt ) => {
  *
  * @func
  * @alias hkdf.expand
- * @param {string} hash - Hash algorithm
+ * @param {string} hash - Hash algorithm (as in underlying Node.js crypto library)
  * @param {integer} hash_len - Hash digest length
  * @param {Buffer|string} prk - A buffer with pseudorandom key
  * @param {integer} length - length of output keying material in octets

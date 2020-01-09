@@ -87,9 +87,13 @@ hkdf(ikm, length);
 
 // Advanced usage (only if you know what you are doing)
 //-------------------
-hkdf.hash_length(hash); // get hash_len
-hkdf.extract(hash, hash_len, ikm, salt); // run only step #1
-hkdf.expand(hash, hash_len. prk, length, info); // run only step #2
+
+// As in underlying Node.js crypto library
+const lhash = hash.toLowerCase().replace( '-', '' ); // 'sha256'
+
+hkdf.hash_length(lhash); // get hash_len
+hkdf.extract(lhash, hash_len, ikm, salt); // run only step #1
+hkdf.expand(lhash, hash_len. prk, length, info); // run only step #2
 ```
 
 # API documentation
@@ -127,7 +131,7 @@ Get expected hash length.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| hash | <code>string</code> | Hash algorithm |
+| hash | <code>string</code> | Hash algorithm (as in underlying Node.js crypto library) |
 
 <a name="hkdf.extract"></a>
 
@@ -140,7 +144,7 @@ HKDF extract action.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| hash | <code>string</code> | Hash algorithm |
+| hash | <code>string</code> | Hash algorithm (as in underlying Node.js crypto library) |
 | hash_len | <code>integer</code> | Hash digest length |
 | ikm | <code>Buffer</code> \| <code>string</code> | Initial Keying Material |
 | salt | <code>Buffer</code> \| <code>string</code> | Optional salt (recommended) |
@@ -156,7 +160,7 @@ HKDF expand action.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| hash | <code>string</code> | Hash algorithm |
+| hash | <code>string</code> | Hash algorithm (as in underlying Node.js crypto library) |
 | hash_len | <code>integer</code> | Hash digest length |
 | prk | <code>Buffer</code> \| <code>string</code> | A buffer with pseudorandom key |
 | length | <code>integer</code> | length of output keying material in octets |
