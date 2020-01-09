@@ -69,7 +69,7 @@ const salt = 'strongly-encouraged';
 // optional parameter
 const info = 'optional-context';
 // HMAC hashing algorithm to use
-const hash = 'SHA-256';
+const hash = 'sha256';
 
 // Generic derivation
 //-------------------
@@ -157,7 +157,7 @@ HKDF expand action.
 | Param | Type | Description |
 | --- | --- | --- |
 | hash | <code>string</code> | Hash algorithm |
-| hash_len | <code>integer</code> | Hash digest length |
+| hash_len | <code>integer</code> | Hash digest length (can be derived used [hash_length](#hkdf.hash_length)) |
 | prk | <code>Buffer</code> \| <code>string</code> | A buffer with pseudorandom key |
 | length | <code>integer</code> | length of output keying material in octets |
 | info | <code>Buffer</code> \| <code>string</code> | Optional context (safe to skip) |
