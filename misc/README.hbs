@@ -11,6 +11,8 @@
 
 Node.js implementation of [RFC5869: HMAC-based Extract-and-Expand Key Derivation Function (HKDF)](https://tools.ietf.org/html/rfc5869).
 
+Additionally, it supports a `HKDF-Expand-Label` variation based on [RFC8446: The Transport Layer Security (TLS) Protocol Version 1.3, section 7.1. Key Schedule](https://datatracker.ietf.org/doc/html/rfc8446#section-7.1).
+
 The implementation is fully compliant with test vectors provided in the RFC.
 
 There are alternative modules, but they are:
@@ -94,6 +96,22 @@ const lhash = hash.toLowerCase().replace( '-', '' ); // 'sha256'
 hkdf.hash_length(lhash); // get hash_len
 hkdf.extract(lhash, hash_len, ikm, salt); // run only step #1
 hkdf.expand(lhash, hash_len. prk, length, info); // run only step #2
+
+// TLS v1.3+
+//-------------------
+const hkdf_tls = require('futoin-hkdf/tls');
+
+const label = 'tls13 ...';
+const context = Buffer.from( /* E.g some binary hash generation */ '' );
+
+hkdf_tls(ikm, length, {salt, label, context, hash}); // Buffer(length) - derived key
+
+// Advanced usage
+hkdf_tls.expand_label(lhash, hash_len. prk, length, labe, context);
+
+// Same as:
+hkdf.expand(lhash, hash_len, prk, length, hkdf_tls.info(length, labe, context));
+
 ```
 
 # API documentation

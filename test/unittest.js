@@ -2,6 +2,7 @@
 
 const crypto = require( 'crypto' );
 const hkdf = require( '../hkdf' );
+const tls = require( '../tls' );
 const expect = require( 'chai' ).expect;
 
 describe( 'HKDF', function() {
@@ -254,4 +255,58 @@ describe( 'HKDF', function() {
             ).toString( 'hex' ) ).to.equal( v.OKM );
         } );
     }
+} );
+
+describe( 'QUIC-TLS', function() {
+    // Based on test vectors from https://datatracker.ietf.org/doc/html/rfc9001
+
+    // 5.2.  Initial Secrets
+    const initial_salt = Buffer.from( '38762cf7f55934b34d179ae6a4c80cadccbb7f0a', 'hex' );
+    const algo = 'sha256';
+    const hash_len = hkdf.hash_length( algo );
+
+    // Appendix A.  Sample Packet Protection
+    const dcid = Buffer.from( '8394c8f03e515708', 'hex' );
+
+    const initial_secret = hkdf.extract( algo, hash_len, dcid, initial_salt );
+
+    it ( 'should generate correct initial_secret', () => {
+        expect( initial_secret.toString( 'hex' ) ).to.equal( '7db5df06e7a69e432496adedb00851923595221596ae2ae9fb8115c1e9ed0a44' );
+    } );
+
+    it ( 'should generate correct client secrets', () => {
+        const client_initial_secret = tls.expand_label( algo, hash_len, initial_secret, 32, 'tls13 client in', '' );
+        expect( client_initial_secret.toString( 'hex' ) )
+            .to.equal( 'c00cf151ca5be075ed0ebfb5c80323c42d6b7db67881289af4008f1f6c357aea' );
+
+        // key
+        expect( tls.expand_label( algo, hash_len, client_initial_secret, 16, 'tls13 quic key', '' ).toString( 'hex' ) )
+            .to.equal( '1f369613dd76d5467730efcbe3b1a22d' );
+
+        // iv
+        expect( tls.expand_label( algo, hash_len, client_initial_secret, 12, 'tls13 quic iv', '' ).toString( 'hex' ) )
+            .to.equal( 'fa044b2f42a3fd3b46fb255c' );
+
+        // hp
+        expect( tls.expand_label( algo, hash_len, client_initial_secret, 16, 'tls13 quic hp', '' ).toString( 'hex' ) )
+            .to.equal( '9f50449e04a0e810283a1e9933adedd2' );
+    } );
+
+    it ( 'should generate correct server secrets', () => {
+        const server_initial_secret = tls.expand_label( algo, hash_len, initial_secret, 32, 'tls13 server in', '' );
+        expect( server_initial_secret.toString( 'hex' ) )
+            .to.equal( '3c199828fd139efd216c155ad844cc81fb82fa8d7446fa7d78be803acdda951b' );
+
+        // key
+        expect( tls.expand_label( algo, hash_len, server_initial_secret, 16, 'tls13 quic key', '' ).toString( 'hex' ) )
+            .to.equal( 'cf3a5331653c364c88f0f379b6067e37' );
+
+        // iv
+        expect( tls.expand_label( algo, hash_len, server_initial_secret, 12, 'tls13 quic iv', '' ).toString( 'hex' ) )
+            .to.equal( '0ac1493ca1905853b0bba03e' );
+
+        // hp
+        expect( tls.expand_label( algo, hash_len, server_initial_secret, 16, 'tls13 quic hp', '' ).toString( 'hex' ) )
+            .to.equal( 'c206b8d9b9f0f37644430b490eeaa314' );
+    } );
 } );

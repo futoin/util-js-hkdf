@@ -35,6 +35,7 @@
     "email": "support@futoin.org"
   },
   "devDependencies": {
+    "@types/node": "^15.14.0",
     "benchmark": "^2.1.4",
     "chai": "^4.2.0",
     "eslint": "^7.19.0",

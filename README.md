@@ -11,6 +11,8 @@
 
 Node.js implementation of [RFC5869: HMAC-based Extract-and-Expand Key Derivation Function (HKDF)](https://tools.ietf.org/html/rfc5869).
 
+Additionally, it supports a `HKDF-Expand-Label` variation based on [RFC8446: The Transport Layer Security (TLS) Protocol Version 1.3, section 7.1. Key Schedule](https://datatracker.ietf.org/doc/html/rfc8446#section-7.1).
+
 The implementation is fully compliant with test vectors provided in the RFC.
 
 There are alternative modules, but they are:
@@ -94,9 +96,36 @@ const lhash = hash.toLowerCase().replace( '-', '' ); // 'sha256'
 hkdf.hash_length(lhash); // get hash_len
 hkdf.extract(lhash, hash_len, ikm, salt); // run only step #1
 hkdf.expand(lhash, hash_len. prk, length, info); // run only step #2
+
+// TLS v1.3+
+//-------------------
+const hkdf_tls = require('futoin-hkdf/tls');
+
+const label = 'tls13 ...';
+const context = Buffer.from( /* E.g some binary hash generation */ '' );
+
+hkdf_tls(ikm, length, {salt, label, context, hash}); // Buffer(length) - derived key
+
+// Advanced usage
+hkdf_tls.expand_label(lhash, hash_len. prk, length, labe, context);
+
+// Same as:
+hkdf.expand(lhash, hash_len, prk, length, hkdf_tls.info(length, labe, context));
+
 ```
 
 # API documentation
+
+## Functions
+
+<dl>
+<dt><a href="#hkdf">hkdf(ikm, length, salt, info, hash)</a> ⇒ <code>Buffer</code></dt>
+<dd><p>HMAC-based Extract-and-Expand Key Derivation Function (HKDF)</p>
+</dd>
+<dt><a href="#tls">tls(ikm, length, salt, label, info, hash)</a> ⇒ <code>Buffer</code></dt>
+<dd><p>TLS v1.3 HKDF-extract + HKFD-Expand-Label action</p>
+</dd>
+</dl>
 
 <a name="hkdf"></a>
 
@@ -165,5 +194,61 @@ HKDF expand action.
 | prk | <code>Buffer</code> \| <code>string</code> | A buffer with pseudorandom key |
 | length | <code>integer</code> | length of output keying material in octets |
 | info | <code>Buffer</code> \| <code>string</code> | Optional context (safe to skip) |
+
+<a name="tls"></a>
+
+## tls(ikm, length, salt, label, info, hash) ⇒ <code>Buffer</code>
+TLS v1.3 HKDF-extract + HKFD-Expand-Label action
+
+**Kind**: global function  
+**Returns**: <code>Buffer</code> - Raw buffer with derived key of @p length bytes  
+**Note**: label and context are limited to 255 bytes!  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| ikm | <code>Buffer</code> \| <code>string</code> |  | Initial Keying Material |
+| length | <code>integer</code> |  | Required byte length of output |
+| salt | <code>Buffer</code> \| <code>string</code> | <code>&#x27;&#x27;</code> | Optional salt (required by fact) |
+| label | <code>Buffer</code> \| <code>string</code> | <code>&#x27;&#x27;</code> | Optional label (required by fact) |
+| info | <code>Buffer</code> \| <code>string</code> | <code>&#x27;&#x27;</code> | Optional context (safe to skip) |
+| hash | <code>string</code> | <code>&quot;&#x27;SHA-256&#x27;&quot;</code> | HMAC hash function to use |
+
+
+* [tls(ikm, length, salt, label, info, hash)](#tls) ⇒ <code>Buffer</code>
+    * [.info(length, label, context)](#tls.info) ⇒ <code>Buffer</code>
+    * [.expand_label(hash, hash_len, prk, length, label, context)](#tls.expand_label) ⇒ <code>Buffer</code>
+
+<a name="tls.info"></a>
+
+### tls.info(length, label, context) ⇒ <code>Buffer</code>
+Encode HKDF context parameter in TLS v1.3 style based on RFC8446 TLS v1.3.
+
+**Kind**: static method of [<code>tls</code>](#tls)  
+**Returns**: <code>Buffer</code> - A buffer with encoded HKDF context  
+**Note**: label and context are limited to 255 bytes!  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| length | <code>integer</code> | length of output keying material in octets |
+| label | <code>string</code> | ASCII label |
+| context | <code>Buffer</code> \| <code>string</code> | Binary context or empty string |
+
+<a name="tls.expand_label"></a>
+
+### tls.expand\_label(hash, hash_len, prk, length, label, context) ⇒ <code>Buffer</code>
+TLS-HKDF expand label action - a HKDF-Expand-Label variation based on RFC8446 TLS v1.3.
+
+**Kind**: static method of [<code>tls</code>](#tls)  
+**Returns**: <code>Buffer</code> - A buffer with output keying material  
+**Note**: label and context are limited to 255 bytes!  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| hash | <code>string</code> | Hash algorithm (as in underlying Node.js crypto library) |
+| hash_len | <code>integer</code> | Hash digest length |
+| prk | <code>Buffer</code> \| <code>string</code> | A buffer with pseudorandom key |
+| length | <code>integer</code> | length of output keying material in octets |
+| label | <code>string</code> | ASCII label |
+| context | <code>Buffer</code> \| <code>string</code> | Binary context or empty string |
 
 
