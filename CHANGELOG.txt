@@ -1,4 +1,4 @@
-=== (next) ===
+=== 1.4.0 (2021-07-02) ===
 CHANGED: hdkf.expand() info parameter to use binary buffer as-is without copying
 CHANGED: dependency maintenance
 NEW: tls, tls.info() and tls.expand_label() feature inspired by TLS v1.3 RFC8446 section 7.1
