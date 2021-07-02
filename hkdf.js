@@ -95,7 +95,7 @@ const hkdf_extract = ( hash, hash_len, ikm, salt ) => {
  * @note Values are hardcoded with fallback for unknown algorithms.
  */
 const hkdf_expand = ( hash, hash_len, prk, length, info ) => {
-    const b_info = Buffer.from( info || '' );
+    const b_info = Buffer.isBuffer( info ) ? info : Buffer.from( info || '' );
     const info_len = b_info.length;
 
     const steps = Math.ceil( length / hash_len );
