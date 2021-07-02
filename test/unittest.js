@@ -309,4 +309,9 @@ describe( 'QUIC-TLS', function() {
         expect( tls.expand_label( algo, hash_len, server_initial_secret, 16, 'tls13 quic hp', '' ).toString( 'hex' ) )
             .to.equal( 'c206b8d9b9f0f37644430b490eeaa314' );
     } );
+
+    it ( 'should work via all-in-one call', () => {
+        expect( tls( dcid, 32, { salt: initial_salt, label: 'tls13 client in' } ).toString( 'hex' ) )
+            .to.equal( 'c00cf151ca5be075ed0ebfb5c80323c42d6b7db67881289af4008f1f6c357aea' );
+    } );
 } );

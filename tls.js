@@ -85,7 +85,7 @@ function tls( ikm, length, { salt='', label='', context='', hash='SHA-256' } = {
     hash = hash.toLowerCase().replace( '-', '' );
 
     // 0. Hash length
-    const hash_len = hash.length( hash );
+    const hash_len = hkdf.hash_length( hash );
 
     // 1. extract
     const prk = hkdf.extract( hash, hash_len, ikm, salt );

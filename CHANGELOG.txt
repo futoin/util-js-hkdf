@@ -1,3 +1,6 @@
+=== (next) ===
+FIXED: hkdf.tls() direct invocation
+
 === 1.4.0 (2021-07-02) ===
 CHANGED: hdkf.expand() info parameter to use binary buffer as-is without copying
 CHANGED: dependency maintenance
