@@ -1,7 +1,6 @@
 
   [![NPM Version](https://img.shields.io/npm/v/futoin-hkdf.svg?style=flat)](https://www.npmjs.com/package/futoin-hkdf)
   [![NPM Downloads](https://img.shields.io/npm/dm/futoin-hkdf.svg?style=flat)](https://www.npmjs.com/package/futoin-hkdf)
-  [![Build Status](https://travis-ci.org/futoin/util-js-hkdf.svg)](https://travis-ci.org/futoin/util-js-hkdf)
   [![stable](https://img.shields.io/badge/stability-stable-green.svg?style=flat)](https://www.npmjs.com/package/futoin-hkdf)
 
   [![NPM](https://nodei.co/npm/futoin-hkdf.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/futoin-hkdf/)

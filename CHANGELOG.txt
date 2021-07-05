@@ -1,3 +1,6 @@
+=== (next) ===
+CHANGED: dependency maintenance
+
 === 1.4.2 (2021-07-05) ===
 FIXED: to include tls.* files in the package
 
