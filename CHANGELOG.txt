@@ -1,3 +1,6 @@
+=== (next) ===
+FIXED: to include tls.* files in the package
+
 === 1.4.1 (2021-07-02) ===
 FIXED: hkdf.tls() direct invocation
 

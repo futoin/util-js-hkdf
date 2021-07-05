@@ -7,7 +7,9 @@
   "files": [
     "hkdf.js",
     "hkdf.d.ts",
-    "futoin.json"
+    "futoin.json",
+    "tls.js",
+    "tls.d.ts"
   ],
   "engines": {
     "node": ">=8"
