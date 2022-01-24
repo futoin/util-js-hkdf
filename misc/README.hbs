@@ -20,11 +20,11 @@ There are alternative modules, but they are:
 * are not compliant with RFC (e.g. work only with string parameters) and/or
 * not working with current Node.js versions and/or
 * do not support arbitrary hash functions and/or
-* not reliable dependency for FutoIn Security concept in general.
+* not reliable dependency for FutoIn™ Security concept in general.
 
 Standalone HKDF `extract()` and `expand()` actions are also available for advanced usage.
 
-**Documentation** --> [FutoIn Guide](https://futoin.org/docs/miscjs/hkdf/)
+**Documentation** --> [FutoIn™ Guide](https://futoin.org/docs/miscjs/hkdf/)
 
 Author: [Andrey Galkin](mailto:andrey@futoin.org)
 

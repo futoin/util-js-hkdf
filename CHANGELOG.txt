@@ -1,3 +1,7 @@
+=== (next) ===
+CHANGED: use Buffer via module to aid usage in browser environment (thanks to johnwchadwick)
+CHANGED: dependency maintenance
+
 === 1.4.3 (2021-12-19) ===
 CHANGED: dependency maintenance
 
