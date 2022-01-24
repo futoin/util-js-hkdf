@@ -19,6 +19,7 @@
  * limitations under the License.
  */
 
+const { Buffer } = require( 'buffer' );
 const { createHash, createHmac } = require( 'crypto' );
 
 const g_digestLenCache = {};

@@ -1,5 +1,6 @@
 'use strict';
 
+const { Buffer } = require( 'buffer' );
 const crypto = require( 'crypto' );
 const hkdf = require( '../hkdf' );
 const tls = require( '../tls' );

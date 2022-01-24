@@ -19,6 +19,7 @@
  * limitations under the License.
  */
 
+const { Buffer } = require( 'buffer' );
 const hkdf = require( './hkdf' );
 
 /**

@@ -1,3 +1,4 @@
+import { Buffer } from "buffer";
 import { expectType } from "tsd";
 import hkdf_tls = require(".");
 

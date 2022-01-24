@@ -1,7 +1,8 @@
 'use strict';
 
-const { Suite } = require( 'benchmark' );
 const assert = require( 'assert' );
+const { Suite } = require( 'benchmark' );
+const { Buffer } = require( 'buffer' );
 
 const futoin_hkdf = require( '../hkdf' );
 
