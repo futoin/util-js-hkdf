@@ -1,5 +1,6 @@
 === (next) ===
 CHANGED: dependency maintenance
+FIXED: minor fixes to README
 
 === 1.5.0 (2022-01-24) ===
 CHANGED: use Buffer via module to aid usage in browser environment (thanks to johnwchadwick)
