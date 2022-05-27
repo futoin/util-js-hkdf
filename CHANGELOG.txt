@@ -1,4 +1,4 @@
-=== (next) ===
+=== 1.5.1 (2022-05-27) ===
 CHANGED: dependency maintenance
 FIXED: minor fixes to README
 
