@@ -1,6 +1,6 @@
 {
   "name": "futoin-hkdf",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "RFC5869: HMAC-based Extract-and-Expand Key Derivation Function (HKDF)",
   "main": "hkdf.js",
   "types": "hkdf.d.ts",
